@@ -42,3 +42,9 @@ Ported to QMK by Techsock <info@techsock.com>
 #define M0110_DATA_BIT          0
 
 
+
+/* M0100 mouse: scale factor from decoded quadrature edges to reported mouse
+   units. The ISR always counts all four edges per cycle; this only divides on
+   report, carrying the remainder forward. 1 = report raw 4x edges.
+   Settle this by measurement, not by feel -- see m0100_mouse.c. */
+#define M0100_COUNT_DIVISOR 1
