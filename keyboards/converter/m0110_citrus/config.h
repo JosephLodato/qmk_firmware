@@ -48,3 +48,10 @@ Ported to QMK by Techsock <info@techsock.com>
    report, carrying the remainder forward. 1 = report raw 4x edges.
    Settle this by measurement, not by feel -- see m0100_mouse.c. */
 #define M0100_COUNT_DIVISOR 1
+
+/* M0100 mouse: the Y quadrature pair's physical sense is inverted relative to
+   USB HID, which wants +Y downward. Applied by the core in
+   pointing_device_adjust_by_defines() after our driver returns its report.
+   Verified on hardware: without this, pushing the mouse forward moved the
+   cursor down. Fix direction here, never by re-wiring or flipping pins. */
+#define POINTING_DEVICE_INVERT_Y
